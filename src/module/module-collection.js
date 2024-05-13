@@ -1,9 +1,13 @@
 import Module from './module'
 import { assert, forEachValue } from '../util'
 
+/**
+ * 整个 module 对象树的构建实现
+ */
 export default class ModuleCollection {
   constructor (rawRootModule) {
     // register root module (Vuex.Store options)
+    // 将传入的options对象构造成一个 module 对象
     this.register([], rawRootModule, false)
   }
 
@@ -27,9 +31,11 @@ export default class ModuleCollection {
 
   register (path, rawModule, runtime = true) {
     if (__DEV__) {
+      // 校验 module 对象结构
       assertRawModule(path, rawModule)
     }
 
+    // 创建 module 对象，提供内部属性操作方法，如 addChild 等
     const newModule = new Module(rawModule, runtime)
     if (path.length === 0) {
       this.root = newModule
@@ -39,6 +45,8 @@ export default class ModuleCollection {
     }
 
     // register nested modules
+    // 通过递归构建嵌套 modules
+    // 对其中的 modules 属性进行模块注册，使其都构建成 module 对象插入到 _children 属性中
     if (rawModule.modules) {
       forEachValue(rawModule.modules, (rawChildModule, key) => {
         this.register(path.concat(key), rawChildModule, runtime)

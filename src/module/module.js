@@ -7,8 +7,8 @@ export default class Module {
     // Store some children item
     this._children = Object.create(null)
     // Store the origin module object which passed by programmer
-    this._rawModule = rawModule
-    const rawState = rawModule.state
+    this._rawModule = rawModule  // 模块对象
+    const rawState = rawModule.state  // 模块对象的 state 属性
 
     // Store the origin module's state
     this.state = (typeof rawState === 'function' ? rawState() : rawState) || {}

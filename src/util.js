@@ -4,7 +4,7 @@
  *
  * @param {Array} list
  * @param {Function} f
- * @return {*}
+ * @return {*}  使用filter过滤数组的第一个元素
  */
 export function find (list, f) {
   return list.filter(f)[0]
@@ -17,7 +17,7 @@ export function find (list, f) {
  *
  * @param {*} obj
  * @param {Array<Object>} cache
- * @return {*}
+ * @return {*} 递归拷贝
  */
 export function deepCopy (obj, cache = []) {
   // just return if obj is immutable value
@@ -48,6 +48,7 @@ export function deepCopy (obj, cache = []) {
 
 /**
  * forEach for object
+ * 遍历对象
  */
 export function forEachValue (obj, fn) {
   Object.keys(obj).forEach(key => fn(obj[key], key))
@@ -61,10 +62,20 @@ export function isPromise (val) {
   return val && typeof val.then === 'function'
 }
 
+/**
+ * 抛出异常
+ * @param {*} condition 
+ * @param {*} msg 
+ */
 export function assert (condition, msg) {
   if (!condition) throw new Error(`[vuex] ${msg}`)
 }
 
+/**
+ * 函数柯里化
+ * @param {*} fn 
+ * @param {*} arg 
+ */
 export function partial (fn, arg) {
   return function () {
     return fn(arg)

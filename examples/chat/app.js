@@ -9,10 +9,12 @@ Vue.filter('time', timestamp => {
   return new Date(timestamp).toLocaleTimeString()
 })
 
-new Vue({
+let a = new Vue({
   el: '#app',
   store,
   render: h => h(App)
 })
+
+console.log(a)
 
 getAllMessages(store)
