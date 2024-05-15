@@ -8,9 +8,11 @@ import { isObject } from './util'
  */
 export const mapState = normalizeNamespace((namespace, states) => {
   const res = {}
+  //mapState的第二个参数为 数组或对象
   if (__DEV__ && !isValidMap(states)) {
     console.error('[vuex] mapState: mapper parameter must be either an Array or an Object')
   }
+  // 最后结果 [{key:'a', val:'1'},...]
   normalizeMap(states).forEach(({ key, val }) => {
     res[key] = function mappedState () {
       let state = this.$store.state
@@ -162,6 +164,7 @@ function isValidMap (map) {
 
 /**
  * Return a function expect two param contains namespace and map. it will normalize the namespace and then the param's function will handle the new namespace and the map.
+ * 处理参数
  * @param {Function} fn
  * @return {Function}
  */

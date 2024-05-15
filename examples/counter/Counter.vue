@@ -5,6 +5,9 @@
     <button @click="decrement">-</button>
     <button @click="incrementIfOdd">Increment if odd</button>
     <button @click="incrementAsync">Increment async</button>
+    <div>
+      {{ $store.state.a.count }} | {{ $store.state.b.dd }}
+    </div>
   </div>
 </template>
 

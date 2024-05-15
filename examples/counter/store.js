@@ -54,5 +54,29 @@ export default new Vuex.Store({
   state,
   getters,
   actions,
-  mutations
+  mutations,
+  modules: {
+    a:{
+      namespaced: true,
+      state: {
+        count: 10
+      },
+      getters: {
+        setCount(state){
+          console.log('触发a')
+        }
+      }
+    },
+    b:{
+      namespaced: true,
+      state: {
+        dd:1
+      },
+      getters: {
+        setCount(state){
+          console.log('触发b')
+        }
+      }
+    }
+  }
 })
